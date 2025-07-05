@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using myfinance_web_netcore.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configuração do Entity Framework com SQLite
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
